@@ -17,8 +17,11 @@
     if (false) yield 2;
     yield 3;
   }
+  // 제너레이터는 문장을 순회할 수 있는 값으로 만들 수 있다.
+  // 어떠한 상태나 어떠한 값이든 순회할 수 있게 만들기 때문에 함수형 프로그래밍 관점에서 굉장히 중요하다.
 
-
+  // 제네레이터를 통해 쉽게 이터레이터를 만들 수 있다.
+  // iter는 이터레이터이자 이터러블이다.
   let iter = gen();
   log(iter[Symbol.iterator]() == iter); // true
   log(iter.next()); // {value: 1, done: false}

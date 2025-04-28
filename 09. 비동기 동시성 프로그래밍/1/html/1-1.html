@@ -2,6 +2,9 @@
 
 # Promise
 
+⭐⭐⭐⭐⭐ 프로미스와 콜백의 가장 큰 차이는 비동기 상황을 일급 값으로 다룬다는 점이다.
+프로미스는 리턴에 Promise{<pending>}으로 then을 통해 다룰 수 있다.
+
 ## 일급
 
 <script>
@@ -23,12 +26,15 @@
     return new Promise(resolve => setTimeout(() => resolve(a + 20), 100));
   }
 
+
   var b = add20(5)
     .then(add20)
     .then(add20)
   // .then(log);
 
   // log(b);
+
+  
 </script>
 
 ## 일급 활용
@@ -52,28 +58,38 @@
 <script type="module">
   // f . g
   // f(g(x))
+  // 상황에 따라 안전하게 합성할 수 있게 모나드란 개념이 있고
+  // 구현체 중에 비동기 상황을 안전하게 합성 할 수 있게 프로미스가 있다.
+  
 
   const g = a => a + 1;
   const f = a => a * a;
 
   // log(f(g(1)));
   // log(f(g()));
+  // 빈값이나 다른 값을 전달했을때 어떻게하면 안전하게 처리할 수 있을까가 모나드다
 
   Array.of(1).map(g).map(f)/*.forEach(r => log(r))*/;
   [].map(g).map(f)/*.forEach(r => log(r))*/;
+  // 안전하게 효과(사용자에게 보여주기 위한 forEach)가 안일어나게 처리
 
   Promise.resolve(2).then(g).then(f)/*.then(r => log(r))*/;
   new Promise(resolve =>
     setTimeout(() => resolve(2), 100)
   ).then(g).then(f)/*.then(r => log(r))*/;
+
+  // 프로미스는 비동기적인 상황을 안전하게 합성하기 위한 도구이다.
 </script>
 
 ## Kleisli Composition
+프로미스는 Kleisli Composition을 지원하는 도구
+오류가 날 수 있는 상황에서의 함수 합성을 안전하게 하는 규칙
 
 <script>
   // f . g
   // f(g(x)) = f(g(x))
   // f(g(x)) = g(x)
+  // g(x)가 에러가 났을때 f(g(x))도 합성을 안한것 같이 처리
 
   var users = [
     {id: 1, name: 'aa'},

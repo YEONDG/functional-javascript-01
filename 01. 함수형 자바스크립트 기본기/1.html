@@ -1,29 +1,25 @@
-<script>const log = console.log;</script>
+<script>
+  const log = console.log;
+</script>
 
-# 평가
-- 코드가 계산(Evaluation) 되어 값을 만드는 것
-
-# 일급
-- 값으로 다룰 수 있다.
-- 변수에 담을 수 있다.
-- 함수의 인자로 사용될 수 있다.
-- 함수의 결과로 사용될 수 있다.
+# 평가 - 코드가 계산(Evaluation) 되어 값을 만드는 것 # 일급 - 값으로 다룰 수 있다. - 변수에 담을 수 있다. - 함수의
+인자로 사용될 수 있다. - 함수의 결과로 사용될 수 있다.
 
 <script>
   const a = 10;
-  const add10 = a => a + 10;
+  const add10 = (a) => a + 10;
   const r = add10(a);
   log(r); // 20
 </script>
 
-# 일급 함수
-- 함수를 값으로 다룰 수 있다.
-- 조합성과 추상화의 도구
+# 일급 함수 - 함수를 값으로 다룰 수 있다. - 조합성과 추상화의 도구
 
 <script>
-  const add5 = a => a + 5;
+  const add5 = (a) => a + 5;
   log(add5); // a => a + 5
   log(add5(5)); // 10
+
+  // 함수가 일급이라는 것은 함수를 값으로 다룰 수 있다는 것
 
   // 함수 실행 시 함수를 리턴
   const f1 = () => () => 1;
@@ -33,6 +29,8 @@
   log(f2); // () => 1
   log(f2()); // 1
 
-  const f3 = () => 1
-  console.log(f3) // () => 1
+  // 함수를 원하는 시점에 평가할 수 있다.
+
+  const f3 = () => 1;
+  console.log(f3); // () => 1
 </script>
